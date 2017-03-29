@@ -1,0 +1,374 @@
+
+html, body {
+    background-color: #fff;
+    color: #636b6f;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    height: 100vh;
+    margin: 0;
+}
+
+.main-container {
+    height: 100vh;
+    width: 50%;
+    margin: 0px auto;
+    padding-top: 100px;
+}
+
+@media (max-width: 992px) {
+
+    .main-container {
+        width: 80%;
+    }
+
+    .home .content > div {
+        margin-bottom: 15px;
+    }
+
+}
+
+/***********************************/
+/* HOME         				   */
+/***********************************/
+
+.home {
+    overflow: auto;
+}
+
+.home .menu {
+    font-size: 14pt;
+    border: 1px solid gray;
+    border-radius: 25px;
+    background: maroon;
+    color: #fff;
+    padding: 15px;
+    margin: 15px 0px;
+}
+
+.home .menu a {
+    color: #fff;
+    display: inline-block;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.home .menu a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.home .menu a.disabled {
+    color: gray !important;
+}
+
+.home .content {
+    margin: 0px !important;
+    font-size: 14pt;
+    background: transparent;
+    color: #777;
+}
+
+.home .content .title {
+    font-weight: bold;
+}
+
+.home .content > div {
+    min-height: 200px;
+    font-size: 12pt;
+    padding: 10px 15px;
+    border: 1px solid gray;
+    border-radius: 25px;
+    border-top: 0px;
+    border-bottom: 0px;
+}
+
+.home .content .t {
+    font-weight: bold;
+    line-height: 30px;
+}
+
+.home .content .btn {
+    font-weight: bold;
+    line-height: 30px;
+    color: maroon;
+    text-decoration: underline;
+}
+
+.home .content .btn:hover {
+    color: lightgray;
+    text-decoration: none;
+}
+
+.home .content .c {
+    color: #000;
+    line-height: 30px;
+}
+
+.home .content .tk {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+
+.home .content a.u {
+    font-weight: bold;
+    font-size: 12pt;
+    color: lightgray;
+    cursor: pointer;
+}
+
+.home .content a.g {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 12pt;
+    color: gray;
+    cursor: pointer;
+}
+
+.home .content .selected a {
+    text-decoration: underline;
+}
+
+.home .content .logged a {
+    color: maroon !important;
+}
+
+/***********************************/
+/* BOARD         				   */
+/***********************************/
+
+.board {
+    overflow: auto;
+}
+
+.board .col {
+    float: left;
+    position: relative;
+}
+
+.board .col .cell:first-child {
+    margin-top: 80px;
+}
+
+.board .col .cell {
+    width: 75px;
+    height: 75px;
+    border: 1px solid gray;
+}
+
+.token-temp {
+    position: absolute;
+    top: 0px;
+    cursor: pointer;
+}
+
+.back-link {
+    margin: 25px;
+    cursor: pointer;
+}
+
+/***********************************/
+/* POPUP styles					   */
+/***********************************/
+
+#overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 90;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.popup {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-top: 0px;
+    margin-left: -200px;
+    width: 400px;
+    box-sizing: border-box;
+    z-index: 95;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: normal;
+    text-align: left;
+    border-radius: 5px;
+    border: 1px solid #9f9f9f;
+    -moz-box-shadow: 0 0 30px #999;
+    -webkit-box-shadow: 0 0 30px #999;
+    box-shadow: 0 0 30px #999;
+    overflow: auto;
+}
+
+.popup .title {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 15px 20px;
+    color: #fff;
+    background: maroon;
+}
+
+.popup .content {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 15px;
+    background: linear-gradient(#fefefe, #ebebeb);
+}
+
+.popup .content .btns {
+    margin-top: 15px;
+    text-align: right;
+}
+
+.popup .content .btns .btn {
+    display: inline-block;
+    padding: 5px 15px;
+    margin-left: 10px;
+    text-align: left;
+    border-radius: 5px;
+    border: 1px solid #9f9f9f;
+    background: #f9f9f9;
+}
+
+.popup .content .btns .btn:hover {
+    background: transparent;
+}
+
+.popup .form-note {
+    margin-top: 10px;
+    color: red;
+    font-size: 10pt;
+}
+
+.popup .form-margin {
+    margin-top: 15px;
+}
+
+.popup .form-border {
+    border-color: red !important;
+}
+
+.popup .form-num {
+    display: inline-block;
+    margin-left: 15px;
+    width: 50px !important;
+}
+
+.popup .form-txt {
+    display: inline-block;
+    margin-left: 15px;
+    width: 200px !important;
+}
+
+.popup .tk-container {
+    margin-top: 15px;
+}
+
+.popup .tk {
+    display: inline-block;
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    border: 2px solid transparent;
+}
+
+.popup .tk:hover,
+.popup .tk.sel {
+    border: 2px solid maroon;
+    cursor: pointer;
+}
+
+@media (max-width: 400px) {
+
+    .popup {
+        width: 98%;
+        left: 1%;
+        margin-left: 0px;
+    }
+
+}
+
+/***********************************/
+/* PRELOADER         			   */
+/***********************************/
+
+#preloader-disabler {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    z-index: 90;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+#preloader {
+    position: absolute;
+    z-index: 99;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -25px;
+    width: 50px;
+    height: 50px;
+    background: url('../images/loader.gif');
+    background-size: 100% 100%;
+}
+
+/***********************************/
+/* TOKENS         				   */
+/***********************************/
+
+.token1 {
+    background: url(../images/tokens/token1.png);
+    background-size: 100% 100%;
+}
+
+.token2 {
+    background: url(../images/tokens/token2.png);
+    background-size: 100% 100%;
+}
+
+.token3 {
+    background: url(../images/tokens/token3.png);
+    background-size: 100% 100%;
+}
+
+.token4 {
+    background: url(../images/tokens/token4.png);
+    background-size: 100% 100%;
+}
+
+.token5 {
+    background: url(../images/tokens/token-b.png);
+    background-size: 100% 100%;
+}
+
+.token6 {
+    background: url(../images/tokens/token-g.png);
+    background-size: 100% 100%;
+}
+
+.token7 {
+    background: url(../images/tokens/token-o.png);
+    background-size: 100% 100%;
+}
+
+.token8 {
+    background: url(../images/tokens/token-r.png);
+    background-size: 100% 100%;
+}
+
+.token9 {
+    background: url(../images/tokens/token-w.png);
+    background-size: 100% 100%;
+}
+
+.token10 {
+    background: url(../images/tokens/token-y.png);
+    background-size: 100% 100%;
+}

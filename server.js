@@ -20,31 +20,37 @@ mongoose.Promise = require('bluebird');
 
 app.use(bodyParser.json());
 
+//app.get('/', function(req, res){
+//  res.send('Hello World!');
+//});
+
+app.use(express.static(__dirname + '/public'));
+
 app.get('/', function(req, res){
-  res.send('Hello World!');
+  res.sendfile(__dirname + '/public/index.html');
 });
 
 app.get("/api/tokens", tokens.getTokens);
 
-app.post("/api/tokens", tokens.postTokens);
+app.post("/api/token/create", tokens.postToken);
 
-app.get("/api/users/:id", users.getUserById);
+app.get("/api/user/:id", users.getUserById);
 
-app.post("/api/users", users.postUsers);
+app.get("/api/users", users.getUsers);
 
-app.post("/api/login/", users.loginUsers);
+app.post("/api/user/create", users.postUser);
+
+app.post("/api/login/", users.loginUser);
+
+app.get("/api/games", games.getGames);
 
 app.get("/api/gamesns", games.getGamesNotStarted);
 
-app.get("/api/gamesns/creator/:cr_id", games.getGamesNotStartedByCId);
+app.get("/api/gamesns/games/:g_id", games.getGameById);
 
-app.get("/api/gamesns/games/:g_id", games.getGameByGId);
+app.post("/api/game/create", games.postGame);
 
-app.get("/api/gamesns/games/name/:cr_id", games.getGamesStartedByName);
-
-//app.post("/api/games", games.postGames);
-
-app.post("/api/games", games.postGames);
+app.post("/api/game/join", games.joinGame);
 
 mongoose.connect("mongodb://localhost:27017/connect4", function(err,db){
     if(!err){
