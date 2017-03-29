@@ -20,10 +20,6 @@ mongoose.Promise = require('bluebird');
 
 app.use(bodyParser.json());
 
-//app.get('/', function(req, res){
-//  res.send('Hello World!');
-//});
-
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res){

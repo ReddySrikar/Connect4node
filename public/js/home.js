@@ -3,7 +3,7 @@
         all_users,
         all_users_list = {},
         all_tokens = {},
-        refresh_rate = 10000,
+        refresh_rate = 3000,
         board_min_x = 4,
         board_max_x = 12,
         board_min_y = 4,

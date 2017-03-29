@@ -68,9 +68,11 @@ module.exports = {
 
                     //populate after saving
                     data.populate('creator_id', function(err) {
+
                         data.populate('players', function(err) {
                             res.send(data);
                         });
+
                     });
 
                 });
