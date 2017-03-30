@@ -56,6 +56,8 @@
 
         curr_game = game;
 
+        disable_board = false;
+
         //the creator always moves 1st
         curr_user_id = game.creator_id._id;
 
@@ -190,7 +192,7 @@
 
         if(disable_board) { return; }
 
-        var params = { game_id: curr_game._id, col_index: ind+1, user_id: curr_user_id, username: all_users[curr_user_id].username, password: all_users[curr_user_id].password };
+        var params = { game_id: curr_game._id, col_index: ind+1, username: all_users[curr_user_id].username, password: all_users[curr_user_id].password };
 
         show_preloader();
 
@@ -220,21 +222,27 @@
 console.log(move);
                 if(move.success) {
 
+                    disable_board = true;
+
+                    curr_user_id = move.turn;
+
+                    moveToken(ind);
+
                     if(move.success === 1) {
                         createPopup('Congratulations!!!', 'User ' + all_users[curr_user_id].username + ' has won the game!', [{ txt: 'ok', action: closePopupOverlay}]);
                     } else if(move.success === 2) {
                         createPopup('Game is over', 'The game is a draw.', [{ txt: 'ok', action: closePopupOverlay}]);
                     }
 
-                    disable_board = true;
 
-                    move = move.turn;
+
+                } else {
+
+                    curr_user_id = move;
+
+                    moveToken(ind);
 
                 }
-
-                curr_user_id = move;
-
-                moveToken(ind);
 
             }
 

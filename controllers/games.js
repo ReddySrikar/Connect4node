@@ -9,7 +9,7 @@ module.exports = {
     //*************************************************************************************************
 
     getGames : function (req,res){
-        Games.find({}).populate('creator_id').populate('players').exec(function(err, result){
+        Games.find({status: 1}).populate('creator_id').populate('players').exec(function(err, result){
             res.send(result);
         })
     },
@@ -143,6 +143,68 @@ module.exports = {
     },
 
     //*************************************************************************************************
+    //Starts a particular game
+    //4 possible cases:
+    //- user is not logged in and can't start the game, returns error: -2
+    //- the game doesn't exist or is already started or finished, returns error: -3
+    //- user is not the creator of the game and can't start the game, returns error: -4
+    //- user starts the game successfully, returns game obj
+    //*************************************************************************************************
+
+    startGame : function(req,res){
+
+        res.status(200);
+
+        //Validate that the user is logged in
+        Users.findOne({"$and": [{ username: req.body.username}, {password: req.body.password}]}).exec(function(err, user){
+
+            if(user) {    //user is logged in so proceed
+
+                Games.findOne({_id: req.body.game_id}).populate('creator_id').exec(function(err, game){
+
+                    if(game) {
+
+                        if(game.status != 1) {
+
+                            res.send({error: -3});
+
+                        }
+
+                        //validate the game creator is the user who wants to start the game
+                        if(game.creator_id._id.toString() === user._id.toString()) {
+
+                            //update players in the game
+                            game.status = 2;
+                            game.save(function(err, game) {
+                                game.populate('players', function(err) {
+                                    res.send(game);
+                                });
+                            });
+
+                        } else {
+
+                            res.send({error: -4});
+
+                        }
+
+                    } else {
+
+                        res.send({error: -3});
+
+                    }
+
+                });
+
+            } else {
+                //console.log('Username is not logged in');
+                res.send({error: -2});
+            }
+
+        });
+
+    },
+
+    //*************************************************************************************************
     //Make a move on a particular game
     //6 possible cases:
     //- user is not logged in and can't move, returns error: -2
@@ -158,24 +220,23 @@ module.exports = {
         res.status(200);
 
         //Validate that the user is logged in
-        Users.findOne({"$and": [{ username: req.body.username}, {password: req.body.password}]}).exec(function(err, result){
+        Users.findOne({"$and": [{ username: req.body.username}, {password: req.body.password}]}).exec(function(err, user){
 
-            if(result) {    //user is logged in so proceed
+            if(user) {    //user is logged in so proceed
 
-                Games.findOne({"$and": [{ _id: req.body.game_id }, { status: 1 }]}).populate('creator_id').exec(function(err, game){
+                Games.findOne({"$and": [{ _id: req.body.game_id }, { status: 2 }]}).populate('creator_id').exec(function(err, game){
 
                     //validate the game exists
                     if(game) {
 
                         //validate it is this players turn
-                        //if(game.turn === req.body.user_id) {
-                        if(true) {
+                        if(game.turn.toString() === user._id.toString()) {
 
                             var col_ind = parseInt(req.body.col_index),
                                 row_ind = 1,
                                 r_inds = [],
                                 game_id = game._id,
-                                user_id = req.body.user_id,
+                                user_id = user._id.toString(),
                                 board = initGameBoard(game.size_x, game.size_y);
 
                             Moves.find({game_id: game_id}).sort({'createTime': 'asc'}).populate('game_id').populate('user_id').exec(function(err, past_moves){
@@ -232,7 +293,7 @@ module.exports = {
 
                                             //update game victory and status
                                             game.winner = user_id;
-                                            game.status = 1;
+                                            game.status = 3;
                                             game.save(function(err, game) {
                                                 res.send({success: 1, turn: next_turn_user_id});
                                             });
@@ -241,7 +302,7 @@ module.exports = {
 
                                             //update game victory and status
                                             game.winner = 'DRAW';
-                                            game.status = 1;
+                                            game.status = 3;
                                             game.save(function(err, game) {
                                                 res.send({success: 2, turn: next_turn_user_id});
                                             });
@@ -324,7 +385,7 @@ function checkVictory(board, x, y, col, row, user_id) {
     var res,
         r,
         c;
-console.log(row + '-start-' + col);
+
     //check col
     res = 0;
     for(var i=0; i<y; i++) {

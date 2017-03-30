@@ -48,6 +48,8 @@ app.post("/api/game/create", games.postGame);
 
 app.put("/api/game/join", games.joinGame);
 
+app.put("/api/game/start", games.startGame);
+
 //app.put("/api/game/leave", games.leaveGame);
 
 app.post("/api/game/move", games.makeMoveOnGame);

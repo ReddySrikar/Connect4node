@@ -49,7 +49,7 @@
 
         var home = $('<div>').appendTo(container).addClass('home'),
             menu = $('<div>').appendTo(home).addClass('menu'),
-            link1 = $('<a>').appendTo(menu).text('Add user').on('click', loginPopup),
+            link1 = $('<a>').appendTo(menu).text('Log in').on('click', loginPopup),
             link2 = $('<a>').appendTo(menu).text('Create user').on('click', createUserPopup),
             link3 = $('<a>').appendTo(menu).text('Create game').addClass('disabled').attr('id', 'cgame_btn'),   //disabled by default
             link4 = $('<a>').appendTo(menu).text('Join game').addClass('disabled').attr('id', 'jgame_btn'),     //disabled by default
@@ -257,9 +257,61 @@ console.log('stats:', obj);
             return;
         }
 
-        clearPage();
+        if(!all_users[game.players[0]._id].username || !all_users[game.players[1]._id].username) {
+            createPopup('Notice', 'Both players should be logged in for the game to start.', [{ txt: 'ok', action: closePopupOverlay}]);
+            return;
+        }
 
-        createBoard(game);
+        var params = { game_id: game._id, username: all_users[game.creator_id._id].username, password: all_users[game.creator_id._id].password };
+
+        show_preloader();
+
+        $.ajax({
+
+            url : '/api/game/start',
+
+            type: 'PUT',
+
+            cache: false,
+
+            data: JSON.stringify(params),
+
+            contentType: 'application/json',
+
+            error : function(xmlhttprequest, textstatus, message) {
+
+                hide_preloader();
+
+                $('#note').text('Something went wrong on the server!');
+
+            },
+
+            success : function(game) {
+
+                hide_preloader();
+
+                if(game && !$.isEmptyObject(game) && !game.error) {
+
+                    clearPage();
+
+                    createBoard(game);
+
+                } else {
+
+                    switch(game.error) {
+                        case -2: createPopup('Error', 'The user trying to start the game is not logged in.', [{ txt: 'ok', action: closePopupOverlay}]);
+                        break;
+                        case -3: createPopup('Error', 'The game that you are trying to start is either ongoing, finished or cant be found.', [{ txt: 'ok', action: closePopupOverlay}]);
+                        break;
+                        case -4: createPopup('Error', 'Only the creator of the game can start it.', [{ txt: 'ok', action: closePopupOverlay}]);
+                        break;
+                    }
+
+                }
+
+            }
+
+        });
 
     }
 
@@ -408,13 +460,13 @@ console.log('stats:', obj);
                                 e.preventDefault();
 
                                 //select the current element and enable the join game button
-                                if(!$(this).hasClass('selected')) {
+                                //if(!$(this).hasClass('selected')) {
 
                                     col.find('.selected').removeClass('selected');
                                     $(this).addClass('selected');
                                     if(isLoggedIn()) { enableJoinGameBtn(); }
 
-                                }
+                                //}
 
                                 updateStats(game);
 
@@ -871,7 +923,7 @@ console.log('stats:', obj);
 
                 url : '/api/game/join',
 
-                type: 'POST',
+                type: 'PUT',
 
                 cache: false,
 
