@@ -5,6 +5,7 @@
         board,
         board_obj,
         token_class,
+        disable_board = false,
         default_w = 75,
         default_h = 75,
         default_token_w = 65,
@@ -15,11 +16,11 @@
 
     function getGameUser(id) {
 
-        for(var key in curr_game.users) {
+        for(var key in curr_game.players) {
 
-            if(curr_game.users[key].id == id) {
+            if(curr_game.players[key]._id == id) {
 
-                return curr_game.users[key];
+                return curr_game.players[key];
 
             }
 
@@ -31,16 +32,16 @@
 
     function getNextUser(id) {
 
-        var len = curr_game.users.length;
+        var len = curr_game.players.length;
 
         for(var i=0; i<len; i++) {
 
-            if(curr_game.users[i].id == id) {
+            if(curr_game.players[i]._id == id) {
 
                 if(i+1<len) {
-                    return curr_game.users[i+1];
+                    return curr_game.players[i+1];
                 } else {
-                    return curr_game.users[0];
+                    return curr_game.players[0];
                 }
 
             }
@@ -56,7 +57,7 @@
         curr_game = game;
 
         //the creator always moves 1st
-        curr_user_id = game.creator_id;
+        curr_user_id = game.creator_id._id;
 
         board = $('<div>').appendTo(container).addClass('board').attr('id', 'board');
 
@@ -187,24 +188,23 @@
 
     function columnClickEvent(ind) {
 
-        var params = { game_id: curr_game.id, col_index: ind+1, user_id: curr_user_id, user_key: curr_user_key };
+        if(disable_board) { return; }
 
-        console.log(params);
-        moveToken(ind);
-        return;
+        var params = { game_id: curr_game._id, col_index: ind+1, user_id: curr_user_id, username: all_users[curr_user_id].username, password: all_users[curr_user_id].password };
+
         show_preloader();
 
         $.ajax({
 
-            url : '/makeMove',
+            url : '/api/game/move',
 
             type: 'POST',
 
             cache: false,
 
-            data: params,
+            data: JSON.stringify(params),
 
-            dataType : 'json',
+            contentType: 'application/json',
 
             error : function(xmlhttprequest, textstatus, message) {
 
@@ -214,11 +214,27 @@
 
             },
 
-            success : function(move_status) {
+            success : function(move) {
 
                 hide_preloader();
+console.log(move);
+                if(move.success) {
 
-                //moveToken(ind);
+                    if(move.success === 1) {
+                        createPopup('Congratulations!!!', 'User ' + all_users[curr_user_id].username + ' has won the game!', [{ txt: 'ok', action: closePopupOverlay}]);
+                    } else if(move.success === 2) {
+                        createPopup('Game is over', 'The game is a draw.', [{ txt: 'ok', action: closePopupOverlay}]);
+                    }
+
+                    disable_board = true;
+
+                    move = move.turn;
+
+                }
+
+                curr_user_id = move;
+
+                moveToken(ind);
 
             }
 
@@ -252,7 +268,7 @@
                 token_temp.remove();
 
                 //NOTE: should change
-                curr_user_id = getNextUser(curr_user_id).id;
+                //curr_user_id = getNextUser(curr_user_id)._id;
 
                 token_id = getGameUser(curr_user_id).token_id;
                 token_class = all_tokens[token_id].name;
@@ -283,7 +299,7 @@
 
         while(i < len) {
 
-            if(board_obj[ind][i] > 0) { result++; }
+            if(board_obj[ind][i] != 0) { result++; }
 
             i++;
 
@@ -302,7 +318,7 @@
 
         while(i < len) {
 
-            if(board_obj[ind][i] > 0) { break; }
+            if(board_obj[ind][i] != 0) { break; }
 
             i++;
 

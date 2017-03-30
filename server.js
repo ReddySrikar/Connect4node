@@ -46,7 +46,11 @@ app.get("/api/gamesns/games/:g_id", games.getGameById);
 
 app.post("/api/game/create", games.postGame);
 
-app.post("/api/game/join", games.joinGame);
+app.put("/api/game/join", games.joinGame);
+
+//app.put("/api/game/leave", games.leaveGame);
+
+app.post("/api/game/move", games.makeMoveOnGame);
 
 mongoose.connect("mongodb://localhost:27017/connect4", function(err,db){
     if(!err){

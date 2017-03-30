@@ -101,7 +101,9 @@ html, body {
 
 .home .content .c {
     color: #000;
+    font-weight: bold;
     line-height: 30px;
+    font-size: 12pt;
 }
 
 .home .content .tk {
@@ -123,6 +125,12 @@ html, body {
     font-size: 12pt;
     color: gray;
     cursor: pointer;
+}
+
+.home .content span.s {
+    font-style: italic;
+    font-size: 10pt;
+    color: lightgray;
 }
 
 .home .content .selected a {

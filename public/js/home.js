@@ -3,11 +3,13 @@
         all_users,
         all_users_list = {},
         all_tokens = {},
-        refresh_rate = 3000,
+        refresh_rate = 1000,
         board_min_x = 4,
         board_max_x = 12,
         board_min_y = 4,
         board_max_y = 12,
+        ongoindRequest = false,
+        promiseListenerTimeout,
         usersInterval,
         gamesInterval;
 
@@ -25,8 +27,9 @@
     function clearPage() {
 
         container.empty();
-        clearInterval(usersInterval);
-        clearInterval(gamesInterval);
+        clearTimeout(promiseListenerTimeout);
+        //clearInterval(usersInterval);
+        //clearInterval(gamesInterval);
 
     }
 
@@ -65,14 +68,30 @@
             enableLogoutBtn();
         }
 
-        //populate the columns and get all the tokens
-        getTokensRequest();
-        getUsersRequest();
-        getGamesRequest();
+        //populate the columns and get all the tokens with the help of promises
+        var p1 = getTokensRequest();
+        var p2 = getUsersRequest();
+        var p3 = getGamesRequest();
 
-        //run routine requests to update the columns in anything changes
-        usersInterval = setInterval(getUsersRequest, refresh_rate);
-        gamesInterval = setInterval(getGamesRequest, refresh_rate);
+        listenForPromises(p1, p2, p3);
+
+    }
+
+    function listenForPromises(p1, p2, p3) {
+
+        //execute when all promises are returned
+        $.when( p1, p2, p3 ).done(function ( v1, v2, v3 ) {
+            //console.log( 'test1', v1 );
+            //console.log( 'test2', v2 );
+            //console.log( 'test3', v3 );
+
+            //var p1 = getTokensRequest();
+            var p2 = getUsersRequest();
+            var p3 = getGamesRequest();
+
+            promiseListenerTimeout = setTimeout(function() { listenForPromises(1, p2, p3); }, refresh_rate);
+
+        });
 
     }
 
@@ -83,6 +102,8 @@
     function getTokensRequest() {
 
         show_preloader();
+
+        var deferred = $.Deferred();
 
         $.ajax({
 
@@ -99,6 +120,8 @@
                 hide_preloader();
 
                 $('#note').text('Something went wrong on the server!');
+
+                deferred.fail();
 
             },
 
@@ -118,9 +141,13 @@
                     createPopup('Error', 'No game can start, because no tokens were returned by the server!', [{ txt: 'ok', action: closePopupOverlay}]);
                 }
 
+                deferred.resolve(1);
+
             }
 
         });
+
+        return deferred.promise();
 
     }
 
@@ -129,12 +156,12 @@
     /*****************************************************************************/
 
     function updateStats(obj) {
-
+console.log('stats:', obj);
         var col = $('#col1');
 
         col.find('div').not('.title').remove();
 
-        if(obj['username']) {
+        if(obj['username']) {   //check if the object is a user
 
             var dots_a = obj.username.length > 10 ? '...' : '',
                 dots_b = obj.email.length > 10 ? '...' : '',
@@ -148,31 +175,56 @@
             $('<div>').appendTo(col).append($('<span>').addClass('t').text('Games won: ')).append($('<span>').addClass('c').text(0));
             $('<div>').appendTo(col).append($('<span>').addClass('t').text('Games lost: ')).append($('<span>').addClass('c').text(0));
 
-        } else if(obj['size_x']) {
+        } else if(obj['size_x']) {  //check if the object is a game
 
             var creator_name = obj.creator_id.username,
                 dots_a = obj.name.length > 15 ? '...' : '',
                 dots_b = creator_name.length > 10 ? '...' : '',
                 is_active = all_users[obj._id] ? 'yes' : 'no',   //can change to something cooler
-                is_active_txt = all_users[obj._id] ? 'yes' : 'no';
+                is_active_txt = all_users[obj._id] ? 'yes' : 'no',
+                has_a_joined_user = false,
+                players = '',
+                game_status = '';
+
+            //get the players usernames into a string
+            for(var i=0; i<obj.players.length; i++) {
+
+                has_a_joined_user = all_users[obj.players[i]._id] ? true : has_a_joined_user;
+
+                players += obj.players[i].username;
+
+                if(i+1 < obj.players.length) { players  += ' vs '; }
+
+            }
+
+            switch(obj.status) {
+                case 1: game_status = 'not started';
+                break;
+                case 2: game_status = 'started';
+                break;
+                case 3: game_status = 'finished';
+                break;
+            }
 
             $('<div>').appendTo(col).append($('<span>').addClass('t').text('Game: ')).append($('<span>').addClass('c').text(obj.name.substring(0, 15) + dots_a).attr('title', obj.name));
             $('<div>').appendTo(col).append($('<span>').addClass('t').text('Created by: ')).append($('<span>').addClass('c').text(creator_name.substring(0, 10) + dots_b).attr('title', creator_name));
             $('<div>').appendTo(col).append($('<span>').addClass('t').text('Board width: ')).append($('<span>').addClass('c').text(obj.size_x).attr('title', obj.size_x));
             $('<div>').appendTo(col).append($('<span>').addClass('t').text('Board height: ')).append($('<span>').addClass('c').text(obj.size_y).attr('title', obj.size_y));
+            $('<div>').appendTo(col).append($('<span>').addClass('t').text('Status: ')).append($('<span>').addClass('c').text(game_status).attr('title', game_status));
+            $('<div>').appendTo(col).append($('<span>').addClass('t').text('Players (' + obj.players.length + '): ')).append($('<div>').addClass('c').text(players).attr('title', players));
 
-            //leaving the game, only available if has joined the game
-            if(true) {
+            //leaving the game, only available if the user has joined the game
+            if(has_a_joined_user) {
 
-                $('<div>').appendTo(col).append($('<a>').addClass('btn').text('Leave the game').on('click', function(game) {
+                //$('<div>').appendTo(col).append($('<a>').addClass('btn').text('Leave the game').on('click', function(game) {
 
-                    return function() {
+                //    return function() {
 
-                        alert('leaving game: ' + game.name + '=' + game._id);
+                //        alert('leaving game: ' + game.name + '=' + game._id);
 
-                    }
+               //     }
 
-                }(obj)));
+               // }(obj)));
 
             }
 
@@ -200,7 +252,7 @@
         console.log('game here:');
         console.log(game);
 
-        if(game.users.length < 2) {
+        if(game.players.length < 2) {
             createPopup('Notice', 'Can\'t start the game with less than 2 players.', [{ txt: 'ok', action: closePopupOverlay}]);
             return;
         }
@@ -216,6 +268,8 @@
     /*****************************************************************************/
 
     function getUsersRequest() {
+
+        var deferred = $.Deferred();
 
         //show_preloader();
 
@@ -234,6 +288,8 @@
                 //hide_preloader();
 
                 $('#note').text('Something went wrong on the server!');
+
+                deferred.fail();
 
             },
 
@@ -270,10 +326,13 @@
 
                 }
 
+                deferred.resolve(2);
 
             }
 
         });
+
+        return deferred.promise();
 
     }
 
@@ -282,6 +341,8 @@
      /*****************************************************************************/
 
     function getGamesRequest() {
+
+        var deferred = $.Deferred();
 
         //show_preloader();
 
@@ -301,6 +362,8 @@
 
                 $('#note').text('Something went wrong on the server!');
 
+                deferred.fail();
+
             },
 
             success : function(games) {
@@ -319,8 +382,22 @@
 
                         var name = games[i]['name'] ? games[i]['name'] : '';
                         var dots = name.length > 10 ? '...' : '';
+                        var game_status = '';
+                        var game_size = '(' + games[i].size_x + 'x' + games[i].size_y + ')';
 
-                        var row = $('<div>').appendTo(col).append($('<a>').addClass('g').text('(' + games[i].size_x + 'x' + games[i].size_y + ') ' + name.substring(0, 10) + dots).attr({ 'data-id': games[i]._id, 'data-creator': games[i].creator_id, 'title': name }));
+                        switch(games[i].status) {
+                            case 1: game_status = 'not started';
+                            break;
+                            case 2: game_status = 'started';
+                            break;
+                            case 3: game_status = 'finished';
+                            break;
+                        }
+
+                        var link =  $('<a>').addClass('g').text(game_size + ' ' + name.substring(0, 10) + dots + ' ').attr({ 'data-id': games[i]._id, 'data-creator': games[i].creator_id, 'title': 'size: ' + game_size + '\x0Aname: ' + name + '\x0Astatus: ' + game_status });
+
+                        var row = $('<div>').appendTo(col).append(link);
+
 
                         if(curr_sel != 'undefined' && curr_sel == games[i]._id) { row.addClass('selected'); }
 
@@ -345,16 +422,19 @@
 
                         }(games[i]));
 
-                        if(all_users[games[i].creator_id]) { row.addClass('logged'); }
+                        if(all_users[games[i].creator_id._id]) { row.addClass('logged'); }
 
                     }
 
                 }
 
+                deferred.resolve(3);
 
             }
 
         });
+
+        return deferred.promise();
 
     }
 
@@ -446,6 +526,8 @@
 
         if(validation) {
 
+            show_preloader();
+
             var params = { username: username, password: password1, email: email, token_id: token };
 
             $.ajax({
@@ -462,19 +544,34 @@
 
                 error : function(xmlhttprequest, textstatus, message) {
 
+                    hide_preloader();
+
                     $('#note').text('Something went wrong on the server!');
 
                 },
 
                 success : function(user) {
 
-                    //update the global arrays
-                    all_users[user._id] = user;
-                    all_users_list[user._id] = user;
+                    hide_preloader();
 
-                    addUserToSession(user);
+                    if(user && !$.isEmptyObject(user) && !user.error) {
 
-                    closePopupOverlay();
+                        //update the global arrays
+                        all_users[user._id] = user;
+                        all_users_list[user._id] = user;
+
+                        addUserToSession(user);
+
+                        closePopupOverlay();
+
+                    } else {
+
+                        switch(user.error) {
+                            case -1: $('#note').text('A user with this username already exists.');
+                            break;
+                        }
+
+                    }
 
                 }
 
@@ -554,7 +651,7 @@
 
                     hide_preloader();
 
-                    if(user && !$.isEmptyObject(user)) {
+                    if(user && !$.isEmptyObject(user) && !user.error) {
 
                         //update the global arrays
                         all_users[user._id] = user;
@@ -566,7 +663,12 @@
 
                     } else {
 
-                        $('#note').text('Invalid username or password.');
+                        switch(user.error) {
+                            case -1: $('#note').text('This username doesn\'t exist.');
+                            break;
+                            case -2: $('#note').text('Invalid username or password.');
+                            break;
+                        }
 
                     }
 
@@ -678,7 +780,20 @@
                     console.log('created game');
                     console.log( game );
 
-                    closePopupOverlay();
+                    hide_preloader();
+
+                    if(game && !$.isEmptyObject(game) && !game.error) {
+
+                        closePopupOverlay();
+
+                    } else {
+
+                        switch(game.error) {
+                            case -2: $('#note').text('The game can\'t be created, because the user is not logged in.');
+                            break;
+                        }
+
+                    }
 
                 }
 
@@ -696,7 +811,7 @@
 
        var game_sel = $('#col3 .selected a'),
            game_id = game_sel.attr('data-id'),
-           game_name = game_sel.attr('title'),
+           game_name = game_sel.text(),
            creator_id = game_sel.attr('data-creator'),
            counter = 0;
 
@@ -772,14 +887,28 @@
 
                 },
 
-                success : function(status) {
+                success : function(game) {
 
                     hide_preloader();
 
-                    console.log('joining game');
-                    console.log( status );
+                    if(game && !$.isEmptyObject(game) && !game.error) {
 
-                    closePopupOverlay();
+                        closePopupOverlay();
+
+                        updateStats(game);
+
+                    } else {
+
+                        switch(game.error) {
+                            case -2: $('#note').text('This user can\'t join the game, because the user is not logged in.');
+                            break;
+                            case -3: $('#note').text('The maximum number of players per game is 2. This game is already full.');
+                            break;
+                            case -4: $('#note').text('This user has already joined.');
+                            break;
+                        }
+
+                    }
 
                 }
 

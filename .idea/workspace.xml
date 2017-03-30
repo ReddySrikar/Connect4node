@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09058aac-84a1-4bcb-9605-cf848a12e285" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/.htaccess" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/favicon.ico" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/games.js" afterPath="$PROJECT_DIR$/controllers/games.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/main.css" afterPath="$PROJECT_DIR$/public/css/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/board.js" afterPath="$PROJECT_DIR$/public/js/board.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/home.js" afterPath="$PROJECT_DIR$/public/js/home.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,21 +22,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="home.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/home.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2409">
-              <caret line="5" column="28" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="28" />
+            <state relative-caret-position="438">
+              <caret line="255" column="128" lean-forward="true" selection-start-line="255" selection-start-column="12" selection-end-line="255" selection-end-column="128" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/index.html">
+      <file leaf-file-name="board.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/board.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1254">
-              <caret line="38" column="18" lean-forward="true" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+            <state relative-caret-position="660">
+              <caret line="230" column="37" lean-forward="false" selection-start-line="230" selection-start-column="37" selection-end-line="230" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -44,8 +45,8 @@
       <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9042">
-              <caret line="274" column="34" lean-forward="false" selection-start-line="274" selection-start-column="34" selection-end-line="274" selection-end-column="34" />
+            <state relative-caret-position="405">
+              <caret line="103" column="22" lean-forward="false" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -54,18 +55,28 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="252">
+              <caret line="52" column="47" lean-forward="false" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="games.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="games.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/games.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="957">
-              <caret line="71" column="37" lean-forward="false" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="37" />
+            <state relative-caret-position="405">
+              <caret line="353" column="11" lean-forward="false" selection-start-line="353" selection-start-column="11" selection-end-line="353" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Moves.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dbmodels/Moves.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="7" column="14" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -74,8 +85,8 @@
       <file leaf-file-name="Games.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dbmodels/Games.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="297">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -104,8 +115,8 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1164">
-              <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="12" />
+            <state relative-caret-position="660">
+              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -115,21 +126,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getTokensRequest</find>
-      <find>getUsersRequest</find>
-      <find>getGamesRequest</find>
-      <find>.id</find>
-      <find>id</find>
-      <find>.tk</find>
-      <find>all_tokens</find>
-      <find>ro</find>
-      <find>addUserToSession</find>
-      <find>is_int</find>
-      <find>new User</find>
+      <find>joingame</find>
+      <find>stats</find>
+      <find>.save</find>
+      <find>updateStats</find>
+      <find>start</find>
       <find>startTheGame</find>
-      <find>postToken</find>
-      <find>Users</find>
-      <find>loadHomePage</find>
+      <find>.id</find>
+      <find>getGameUser</find>
+      <find>board_obj</find>
+      <find>getColLength</find>
+      <find>getColNextPos</find>
+      <find>curr_game</find>
+      <find>.populate</find>
+      <find>col</find>
+      <find>Moves</find>
+      <find>consol</find>
+      <find>ajax</find>
+      <find>initGameBoard</find>
+      <find>checkDraw</find>
+      <find>.password</find>
+      <find>moveToken</find>
+      <find>getNextUser</find>
+      <find>next_turn_user_id</find>
+      <find>getgames</find>
+      <find>console</find>
+      <find>stat</find>
+      <find>victor</find>
+      <find>startthegame</find>
+      <find>curr_user_id</find>
+      <find>checkVictory</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -143,20 +169,22 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/css/main.css" />
         <option value="$PROJECT_DIR$/controllers/tokens.js" />
         <option value="$PROJECT_DIR$/controllers/users.js" />
-        <option value="$PROJECT_DIR$/public/js/home.js" />
+        <option value="$PROJECT_DIR$/public/css/main.css" />
         <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/dbmodels/Moves.js" />
+        <option value="$PROJECT_DIR$/public/js/home.js" />
+        <option value="$PROJECT_DIR$/public/js/board.js" />
         <option value="$PROJECT_DIR$/controllers/games.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-3853" />
+    <option name="x" value="-13" />
     <option name="y" value="-13" />
-    <option name="width" value="3866" />
-    <option name="height" value="2346" />
+    <option name="width" value="2586" />
+    <option name="height" value="1386" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -177,8 +205,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -285,11 +311,19 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\c4-final\dbmodels" />
+      <recent name="C:\c4-final\controllers" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -511,8 +545,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3853" y="-13" width="3866" height="2346" extended-state="6" />
-    <editor active="false" />
+    <frame x="-13" y="-13" width="2586" height="1386" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -522,8 +556,8 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -533,8 +567,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -551,6 +585,78 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/public/js/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1254">
+          <caret line="38" column="18" lean-forward="true" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9042">
+          <caret line="274" column="34" lean-forward="false" selection-start-line="274" selection-start-column="34" selection-end-line="274" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="957">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/games.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2343">
+          <caret line="71" column="37" lean-forward="false" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbmodels/Games.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/tokens.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbmodels/Users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/home.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -623,10 +729,34 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/seed/users-seeder.js" />
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1254">
+          <caret line="38" column="18" lean-forward="false" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9042">
-          <caret line="274" column="34" lean-forward="false" selection-start-line="274" selection-start-column="34" selection-end-line="274" selection-end-column="34" />
+        <state relative-caret-position="405">
+          <caret line="103" column="22" lean-forward="false" selection-start-line="103" selection-start-column="22" selection-end-line="103" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/moves.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="19" column="42" lean-forward="false" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -649,48 +779,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="252">
+          <caret line="52" column="47" lean-forward="false" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/users.js">
+    <entry file="file://$PROJECT_DIR$/dbmodels/Moves.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1164">
-          <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="12" />
+        <state relative-caret-position="231">
+          <caret line="7" column="14" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dbmodels/Games.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/games.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="957">
-          <caret line="71" column="37" lean-forward="false" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1254">
-          <caret line="38" column="18" lean-forward="true" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
+        <state relative-caret-position="297">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2409">
-          <caret line="5" column="28" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="28" />
+        <state relative-caret-position="438">
+          <caret line="255" column="128" lean-forward="true" selection-start-line="255" selection-start-column="12" selection-end-line="255" selection-end-column="128" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/board.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="230" column="37" lean-forward="false" selection-start-line="230" selection-start-column="37" selection-end-line="230" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/games.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="353" column="11" lean-forward="false" selection-start-line="353" selection-start-column="11" selection-end-line="353" selection-end-column="11" />
           <folding />
         </state>
       </provider>
